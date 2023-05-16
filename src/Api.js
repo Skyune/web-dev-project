@@ -1,9 +1,3 @@
-// jak zyc
-
-
-
-
-
 export const uploadImage = async (formData) => {
   try {
     const response = await fetch("https://s38984.eduweb.pwste.edu.pl/artykuly/upload.php", {

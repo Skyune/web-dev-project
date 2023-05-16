@@ -32,7 +32,9 @@ const App = () => {
     return false;
   };
 
-  //nie dziala wtf?
+  //nie dziala storage wtf?
+  //still learning react
+  //too sleepy now, continue later
   const isUserLoggedIn = isLoggedIn();
 
 
@@ -57,8 +59,8 @@ const App = () => {
 };
 
 
+
 //move this somewhere else later
-//jak zyc
 
 window.onload = function() {
 
