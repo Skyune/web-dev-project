@@ -7,7 +7,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 
-const SignInForm = ({showSignUpModal, setSignUpModal}) => {
+const SignInForm = ({showSignUpModal, setSignUpModal, handleLogin}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,10 +15,12 @@ const SignInForm = ({showSignUpModal, setSignUpModal}) => {
     e.preventDefault();
 
    
-    if (email == "krystianh595@gmail.com" && password == "123456") {
+    if (email === "krystianh595@gmail.com" && password === "123456") {
         const expirationTime = new Date().getTime() + 30 * 24 * 60 * 60 * 1000; // Set expiration to 30 days from now
         localStorage.setItem("isLoggedIn", JSON.stringify({ loggedIn: true, expiresAt: expirationTime }));
-      console.log("Login successful");
+
+        console.log("Login successful");
+        handleLogin();
     } else {
       console.log("Login failed");
     }
@@ -86,10 +88,17 @@ const SignInForm = ({showSignUpModal, setSignUpModal}) => {
 </div>
 
 </div>
-<button type="submit"      onClick={() => setSignUpModal(false)}
-             class="w-full text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-           >Sign in
+<button
+  type="submit"
+  onClick={(e) => {
+    handleSubmit(e);
+    setSignUpModal(false);
+  }}
+  className="w-full text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+>
+  Sign in
 </button>
+
 
 </form>
 </div>

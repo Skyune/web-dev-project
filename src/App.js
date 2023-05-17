@@ -9,6 +9,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showSignUpModal, setSignUpModal] = useState(true);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
 
   useEffect(() => {
@@ -32,17 +33,24 @@ const App = () => {
     return false;
   };
 
-  //nie dziala storage wtf?
-  //still learning react
-  //too sleepy now, continue later
-  const isUserLoggedIn = isLoggedIn();
 
+  const isUserLoggedIn = isLoggedIn();
 
   const openModal = () => {
     setShowModal(true);
   };
 
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      setUserLoggedIn(true);
+    }
+  }, [isUserLoggedIn]);
 
+  const handleLogin = () => {
+    setUserLoggedIn(true);
+  };
+
+  
 
   return (
     <div className="dark:bg-black">
@@ -52,7 +60,7 @@ const App = () => {
           <ArticleCard key={item.id} item={item} handleDelete={() => handleDelete(item.id, setData)} />
         ))}
         <AddArticleModal showModal={showModal} setShowModal={setShowModal}  setData={setData} />
-        {!isUserLoggedIn && <SignInForm showSignUpModal={showSignUpModal} setSignUpModal={setSignUpModal}/>}
+        {!userLoggedIn && <SignInForm  handleLogin={handleLogin} showSignUpModal={showSignUpModal} setSignUpModal={setSignUpModal}/>}
       </div>
     </div>
   );
